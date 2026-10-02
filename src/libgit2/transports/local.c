@@ -344,8 +344,8 @@ static int local_push_update_remote_ref(
 	/* check for lhs, if it's empty it means to delete */
 	if (lref[0] != '\0') {
 		/* Create or update a ref */
-		error = git_reference_create(NULL, remote_repo, rref, loid,
-					     !git_oid_is_zero(roid), NULL);
+		error = git_reference_create_matching(NULL, remote_repo, rref, loid,
+					     !git_oid_is_zero(roid), roid, NULL);
 	} else {
 		/* Delete a ref */
 		if ((error = git_reference_lookup(&remote_ref, remote_repo, rref)) < 0) {
